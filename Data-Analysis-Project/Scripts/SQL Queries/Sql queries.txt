@@ -1,0 +1,16 @@
+-- Traffic vs Pollution
+SELECT t.timestamp, t.vehicle_count, p.AQI
+FROM traffic t
+JOIN pollution p ON t.location = p.location;
+
+-- Weather Impact on Traffic
+SELECT w.date, w.rainfall, w.temperature, t.vehicle_count
+FROM weather w
+JOIN pollution p ON w.station_id = p.station_id
+JOIN traffic t ON t.location = p.location;
+
+-- Regional Overview
+SELECT r.zone_name, r.population, t.vehicle_count, p.AQI
+FROM regions r
+JOIN traffic t ON r.zone_name = t.zone_name
+JOIN pollution p ON r.zone_name = p.location;
